@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-bg{
+    background-image: url('https://res.cloudinary.com/duwr4trwl/image/upload/v1738342556/subtle-stripes_s2lqbo.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
