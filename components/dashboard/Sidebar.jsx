@@ -3,6 +3,13 @@ import Link from 'next/link'
 import React from 'react'
 import SubscriptionCard from './SubscriptionCard'
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+
+
 export default function Sidebar() {
   return (
     <div className='w-60 min-h-screen bg-slate-800 text-slate-50  fixed'>

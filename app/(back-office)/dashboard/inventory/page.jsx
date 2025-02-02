@@ -1,9 +1,11 @@
+import FixedHeader from '@/components/dashboard/FixedHeader'
 import React from 'react'
 
 export default function Inventory() {
   return (
     <div>
-        <h2>Inventory</h2>
+      <FixedHeader />
+        <h2>Inventory Creation Options</h2>
     </div>
   )
 }
