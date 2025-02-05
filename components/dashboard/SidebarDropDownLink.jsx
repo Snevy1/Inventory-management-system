@@ -9,8 +9,7 @@ import {
 } from "@/components/ui/collapsible"
 import { BaggageClaim } from 'lucide-react'
 
-export default function SidebarDropDownLink({title, items, icon}) {
-    const Icon = icon;
+export default function SidebarDropDownLink({title, items, icon:Icon}) {
   return (
     <Collapsible >
     <CollapsibleTrigger className='p-2 flex items-center space-x-2'>
