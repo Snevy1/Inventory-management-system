@@ -15,11 +15,23 @@ export default function Sidebar() {
   const inventoryLinks = [
     {
       title:"Items",
-      href: "/dashboard/inventory"
+      href: "/dashboard/inventory/items/new"
     },
     {
-      title:"Item Group",
-      href: "/dashboard/inventory"
+      title:"Categories",
+      href: "/dashboard/inventory/categories/new"
+    },
+    {
+      title:"Brands",
+      href: "/dashboard/inventory/brands/new"
+    },
+    {
+      title:"Units",
+      href: "/dashboard/inventory/units/new"
+    },
+    {
+      title:"Warehouse",
+      href: "/dashboard/inventory/warehouse/new"
     },
     {
       title:"Inventory Adjustment",
