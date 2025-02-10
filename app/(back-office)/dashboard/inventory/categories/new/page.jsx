@@ -1,29 +1,76 @@
+"use client"
+
 import FormHeader from '@/components/dashboard/FormHeader'
-import { X } from 'lucide-react'
+import SubmitButton from '@/components/FormInputs/SubmitButton'
+import TextareaInput from '@/components/FormInputs/TextareaInput'
+import TextInput from '@/components/FormInputs/TextInput'
+import { Plus, X } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function NewCategory() {
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const [loading,setLoading] = useState(false);
+
+ async function onSubmit(data){
+  console.log(data);
+  setLoading(true);
+  
+const baseUrl = "http://localhost:3000"
+
+    try {
+      const response = await fetch(`${baseUrl}/api/categories`, {
+        method: "POST",
+        headers:{
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      if(response.ok) {
+        console.log(response);
+        reset();
+        setLoading(false)
+      }
+      
+      
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      
+    }
+    
+    
+  }
+
+
   return (
     <div>
         {/* Header */}
-        <FormHeader title="New Category" href="#" />
+        <FormHeader title="New Category" href="/dashboard/inventory/" />
         {/* Form */}
-        <form action="" className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <div class="sm:col-span-2">
-                  <label for="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" />
-              </div>
-              <div class="w-full">
-                  <label for="brand" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                  <input type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Product brand" required="" />
-              </div>
+          <TextInput label="Category Title" name="title" register={register}  errors={errors} />
+          <TextareaInput
+          
+          label="Category Description" 
+          name="description" 
+          register={register} 
+           errors={errors}
+          
+          
+          />
           </div>
 
-        <div className="mt-6 sm:col-span-1">
-        <button type="submit" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-        </div>
+          <SubmitButton isLoading={loading} title=" Category"/>
 
 
 
