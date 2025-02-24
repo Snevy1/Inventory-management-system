@@ -2,7 +2,7 @@
 
 import FixedHeader from '@/components/dashboard/FixedHeader'
 import OptionCard from '@/components/dashboard/OptionCard'
-import { Boxes, Component, ScrollText, Shirt } from 'lucide-react'
+import {  Diff, LayoutGrid, LayoutPanelTop, Scale, ScrollText, Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -16,7 +16,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/items/new",
             linkTitle: "New Item",
             enabled: true,
-            icon: Shirt
+            icon: LayoutGrid
 
     },
     {
@@ -25,7 +25,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/categories/new",
             linkTitle: "New Categories",
             enabled: true,
-            icon: Boxes
+            icon: LayoutPanelTop
 
     },
     {
@@ -43,7 +43,7 @@ export default function Inventory() {
             link: "/dashboard/inventory/warehouse/new",
             linkTitle: "New Warehouse",
             enabled: true,
-            icon: ScrollText
+            icon: Warehouse
 
     },
     {
@@ -52,7 +52,16 @@ export default function Inventory() {
             link: "/dashboard/inventory/units/new",
             linkTitle: "New Unit",
             enabled: true,
-            icon: Component
+            icon: Scale
+
+    },
+    {
+      title: "Inventory Adjustment",
+            description: "Transfer stock from the Main Warehouse",
+            link: "/dashboard/inventory/adjustments/new",
+            linkTitle: "New Adjustment",
+            enabled: true,
+            icon: Diff
 
     }
     
@@ -61,7 +70,7 @@ export default function Inventory() {
   return (
     <div>
       <FixedHeader newLink="/dashboard/inventory/items/new" />
-        <div className="grid grid-col-1 lg:grid-cols-2  py-8 px-16  gap-6">
+        <div className="grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 py-8 px-16  gap-6">
            {
             optionCards.map((card, i)=>{
               return (
