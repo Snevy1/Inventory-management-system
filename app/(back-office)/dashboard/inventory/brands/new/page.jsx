@@ -4,10 +4,12 @@ import FormHeader from '@/components/dashboard/FormHeader'
 import SubmitButton from '@/components/FormInputs/SubmitButton'
 import TextareaInput from '@/components/FormInputs/TextareaInput'
 import TextInput from '@/components/FormInputs/TextInput'
+import { makePostRequest } from '@/lib/apiRequest'
 import { Plus, X } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 export default function NewBrand() {
 
@@ -22,30 +24,9 @@ export default function NewBrand() {
 
  async function onSubmit(data){
   console.log(data);
-  setLoading(true);
+ 
   
-const baseUrl = "http://localhost:3000"
-
-    try {
-      const response = await fetch(`${baseUrl}/api/brands`, {
-        method: "POST",
-        headers:{
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-      if(response.ok) {
-        console.log(response);
-        reset();
-        setLoading(false)
-      }
-      
-      
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-      
-    }
+       makePostRequest(setLoading,"api/brands",data,"Brand",reset)
     
     
   }
