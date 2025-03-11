@@ -19,7 +19,7 @@ model Item {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   title         String
   description  String?
-  category     Category @relation(fields: [categoryId], references: [id])
+  category     Category @relation(fields: [categoryId], references: [id],onDelete:Cascade)
   categoryId   String   @db.ObjectId
   sku          String   @unique
   barcode      String?
@@ -41,6 +41,8 @@ model Item {
   notes        String?
   AddStockAdjustment      AddStockAdjustment[]
   TransferStockAdjustment TransferStockAdjustment[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Category {
@@ -48,6 +50,8 @@ model Category {
   title       String
   description String?
   Item        Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Warehouse {
@@ -56,6 +60,8 @@ model Warehouse {
   location                String?
   description             String?
   warehouseType           String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model AddStockAdjustment {
@@ -66,6 +72,8 @@ model AddStockAdjustment {
   receivingWarehouseId     String   
   itemId     String    @db.ObjectId
   item       Item @relation(fields: [itemId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model TransferStockAdjustment {
@@ -77,6 +85,9 @@ model TransferStockAdjustment {
   receivingWarehouseId      String    
    item       Item @relation(fields: [itemId], references: [id])
   itemId      String    @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 
 }
 
@@ -85,12 +96,16 @@ model Unit {
   title        String
   abbreviation String
   Item         Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Brand {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   Item  Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 
@@ -107,4 +122,6 @@ model Supplier {
   taxID           String?
   notes           String?
   Item        Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
