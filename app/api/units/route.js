@@ -35,6 +35,8 @@ export async function GET(request){
             }
         });
 
+        console.log("Units", units);
+
         return NextResponse.json(units);
 
         

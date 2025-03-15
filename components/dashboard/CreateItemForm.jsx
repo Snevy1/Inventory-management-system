@@ -6,10 +6,6 @@ import SubmitButton from '@/components/FormInputs/SubmitButton'
 import TextareaInput from '@/components/FormInputs/TextareaInput'
 import TextInput from '@/components/FormInputs/TextInput'
 import { makePostRequest } from '@/lib/apiRequest'
-import { UploadButton } from '@/lib/uploadthing'
-import { UploadDropzone } from '@uploadthing/react'
-import { Plus, X } from 'lucide-react'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -42,7 +38,9 @@ export default  function CreateItemForm({categories, units,brands, warehouses,su
   data.imageUrl=imageUrl
   console.log(data);
 
-        makePostRequest(setLoading,"api/items",data,"Item",reset)
+        makePostRequest(setLoading,"api/items",data,"Item",reset);
+
+        setImageUrl("");
     
     
   }
@@ -51,7 +49,7 @@ export default  function CreateItemForm({categories, units,brands, warehouses,su
   return (
         <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-        <TextInput label="Warehouse Title" name="title" register={register}  errors={errors} className='w-full' />
+        <TextInput label="Item Title" name="title" register={register}  errors={errors} className='w-full' />
           <SelectInput name="categoryId" label="Select the Item Category" register={register}  className='w-full'
           options={categories}
           

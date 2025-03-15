@@ -28,12 +28,13 @@ model Item {
   unitId       String   @db.ObjectId
   brand        Brand    @relation(fields: [brandId], references: [id])
   brandId      String   @db.ObjectId
+  Warehouse        Warehouse    @relation(fields: [WarehouseId], references: [id])
+  WarehouseId      String   @db.ObjectId
   sellingPrice    Float
   buyingPrice    Float
   supplier       Supplier   @relation(fields: [supplierId], references: [id])
   supplierId      String   @db.ObjectId
   reOrderPoint Int
-  location     String?
   imageUrl     String[]
   weight       Float?
   dimensions   String?
@@ -60,6 +61,7 @@ model Warehouse {
   location                String?
   description             String?
   warehouseType           String
+  Item        Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -112,7 +114,7 @@ model Brand {
 
 model Supplier {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
+  title            String
   phone           String?
   email           String?
   address         String?

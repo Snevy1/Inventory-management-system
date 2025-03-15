@@ -17,6 +17,6 @@ export const ourFileRouter = {
     
     .onUploadComplete(async ({ metadata, file }) => {
       
-      console.log("file url", file.url, metadata);
+      console.log("file url", file.ufsUrl, metadata);
     }),
 } 

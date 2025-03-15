@@ -1,15 +1,18 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
+import { title } from "process";
 
 export  async function POST(request){
     try {
-        const {name, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms, type} = await request.json();
+        
+        const {title, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms} = await request.json();
+        console.log("Title", title);
         const supplier  = await  db.supplier.create({
             data:{
-                name, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms, type
+               title, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms
             }
         })
-    console.log(supplier)
+    
     return NextResponse.json(supplier)
     } catch (error) {
         console.log(error)
@@ -34,6 +37,7 @@ export async function GET(request){
                 createdAt: 'desc' //latest suppliers
             }
         });
+
 
         return NextResponse.json(suppliers);
 

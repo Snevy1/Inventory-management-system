@@ -4,12 +4,20 @@ import FormHeader from '@/components/dashboard/FormHeader'
 import { getData } from '@/lib/getData';
 export default async  function NewItem() {
 
-  const categories = await getData();
-  console.log(categories);
-  const units = []
-  const brands = []
-  const warehouses = []
-  const suppliers = []
+
+  const categoriesData =  getData("categories");
+  const unitsData = getData("units");
+  const brandsData = getData("brands");
+  const warehousesData =  getData("warehouses");
+  const suppliersData = getData("suppliers");
+
+  const [categories, units,brands,warehouses,suppliers] = await Promise.all([categoriesData,unitsData,brandsData,warehousesData,
+    suppliersData
+   ])
+
+  //Parallel Fetching is faster; none blocking
+
+
   const selectOptions = [
     {
       label: "Main",
