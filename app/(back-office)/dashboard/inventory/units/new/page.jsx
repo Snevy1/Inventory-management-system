@@ -31,7 +31,7 @@ export default function NewUnit() {
   return (
     <div>
         {/* Header */}
-        <FormHeader title="New Unit" href="/dashboard/inventory/" />
+        <FormHeader title="New Unit" href="/dashboard/inventory/units" />
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">

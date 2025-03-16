@@ -12,12 +12,12 @@ import { useForm } from 'react-hook-form'
 export default function NewWareHouse() {
   const selectOptions = [
     {
-      label: "Main",
-      value: "main"
+      title: "Main",
+      id: "main"
     },
     {
-      label: "Branch",
-      value: "branch"
+      title: "Branch",
+      id: "branch"
     }
   ]
 
@@ -43,7 +43,7 @@ const baseUrl = "http://localhost:3000"
   return (
     <div>
         {/* Header */}
-        <FormHeader title="New Warehouse" href="/dashboard/inventory/" />
+        <FormHeader title="New Warehouse" href="/dashboard/inventory/warehouse" />
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
