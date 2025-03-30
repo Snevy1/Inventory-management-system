@@ -6,7 +6,6 @@ export  async function POST(request){
     try {
         
         const {title, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms} = await request.json();
-        console.log("Title", title);
         const supplier  = await  db.supplier.create({
             data:{
                title, phone, email,address, notes, contactPerson,supplierCode, taxID, paymentTerms

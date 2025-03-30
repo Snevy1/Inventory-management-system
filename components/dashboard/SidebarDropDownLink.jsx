@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/collapsible"
 import { BaggageClaim, ChevronRight } from 'lucide-react'
 
-export default function SidebarDropDownLink({title, items, icon:Icon}) {
+export default function SidebarDropDownLink({title, items, icon:Icon, setShowSidebar}) {
   return (
     <Collapsible >
     <CollapsibleTrigger className='flex justify-between items-center w-full '>
@@ -27,7 +27,7 @@ export default function SidebarDropDownLink({title, items, icon:Icon}) {
                       {
                         items.map((item, index)=>{
                           return (
-                            <CollapsibleLink key={index} title={item.title} href={item.href} />
+                            <CollapsibleLink setShowSidebar={setShowSidebar} key={index} title={item.title} href={item.href} />
                           )
                         })
                       }
