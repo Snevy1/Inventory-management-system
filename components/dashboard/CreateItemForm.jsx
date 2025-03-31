@@ -14,7 +14,7 @@ export default  function CreateItemForm({categories, units,brands, warehouses,su
 
   const router = useRouter();
 
-  const [imageUrl, setImageUrl] = useState(initialData.imageUrl[0])
+  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl?.[0] || '')
 
   
   const selectOptions = [
@@ -48,7 +48,7 @@ export default  function CreateItemForm({categories, units,brands, warehouses,su
   data.imageUrl=imageUrl
   
 
-   if(isUpdate){
+      if(isUpdate){
               // Update request
               makePutRequest(setLoading, `api/items/${initialData.id}`,data,"Item",
               redirect, 

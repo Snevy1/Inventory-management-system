@@ -72,7 +72,7 @@ export default  function DataTable({data=[], columns=[],resourceTitle}) {
                                 <Pencil className='w-4 h-4' />
                                 <span>Edit</span>
                             </Link>
-                           <DeleteBtn />
+                           <DeleteBtn id={item.id} endpoint={resourceTitle} />
 
                             </td>
                 

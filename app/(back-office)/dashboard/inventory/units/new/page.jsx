@@ -38,7 +38,7 @@ export default function NewUnit({initialData={} , isUpdate=false}) {
           reset)
   
          }else{
-          makePostRequest(setLoading,"api/unit",data,"Unit",reset)
+          makePostRequest(setLoading,"api/units",data,"Unit",reset)
          }
     
     

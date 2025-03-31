@@ -1,6 +1,6 @@
 import React from 'react'
 import { getData } from '@/lib/getData';
-import NewItem from '../../new/page';
+import NewItem from '@/components/dashboard/NewItem';
 
 export default async function Update({params:{id}}) {
 

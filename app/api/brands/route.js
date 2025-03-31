@@ -49,3 +49,31 @@ export async function GET(request){
         
     }
 }
+
+
+export async function DELETE(request){
+    
+    try {
+    const id = request.nextUrl.searchParams.get("id");
+
+    const deleteBrand = await db.brand.delete({
+        where:{
+            id
+        }
+    })
+
+    return NextResponse.json(deleteBrand)
+        
+    } catch (error) {
+        console.log(error);
+
+        return NextResponse.json({
+            error,
+            message: "Failed to Delete Brand"
+        }, {
+            status: 500
+        })
+        
+        
+    }
+}

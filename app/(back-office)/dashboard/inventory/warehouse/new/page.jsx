@@ -47,7 +47,7 @@ export default function NewWareHouse({initialData={}, isUpdate=false}) {
             reset)
     
            }else{
-            makePostRequest(setLoading,"api/warehouse",data,"warehouse",reset)
+            makePostRequest(setLoading,"api/warehouses",data,"warehouse",reset)
            }
     
     
