@@ -5,14 +5,16 @@ import { getData } from '@/lib/getData'
 export default async function NewAdjustment() {
     const itemsData =  getData("items");
     const warehousesData =  getData("warehouses");
+    const suppliersData = getData("suppliers");
 
-    const [items, warehouses] = await Promise.all([itemsData,warehousesData])
+
+    const [items, warehouses,suppliers] = await Promise.all([itemsData,warehousesData,suppliersData])
 
     
     
     
 
   return (
-    <AdjustmentForm items={items} warehouses={warehouses} />
+    <AdjustmentForm items={items} warehouses={warehouses} suppliers={suppliers}/>
   )
 }

@@ -26,13 +26,13 @@ model Item {
   quantity     Int
   unit         Unit     @relation(fields: [unitId], references: [id])
   unitId       String   @db.ObjectId
-  brand        Brand    @relation(fields: [brandId], references: [id])
+  brand        Brand    @relation(fields: [brandId], references: [id],onDelete:Cascade)
   brandId      String   @db.ObjectId
-  Warehouse        Warehouse    @relation(fields: [WarehouseId], references: [id])
+  Warehouse        Warehouse    @relation(fields: [WarehouseId], references: [id],onDelete:Cascade)
   WarehouseId      String   @db.ObjectId
   sellingPrice    Float
   buyingPrice    Float
-  supplier       Supplier   @relation(fields: [supplierId], references: [id])
+  supplier       Supplier   @relation(fields: [supplierId], references: [id],onDelete:Cascade)
   supplierId      String   @db.ObjectId
   reOrderPoint Int
   imageUrl     String[]
@@ -61,6 +61,7 @@ model Warehouse {
   location                String?
   description             String?
   warehouseType           String
+   stockQty                Int @default(0)
   Item        Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -72,8 +73,12 @@ model AddStockAdjustment {
   addStockQty     Int
   notes           String?
   receivingWarehouseId     String   
+  item       Item @relation(fields: [itemId], references: [id],onDelete:Cascade)
   itemId     String    @db.ObjectId
-  item       Item @relation(fields: [itemId], references: [id])
+
+  supplier      Supplier @relation(fields: [supplierId], references: [id],onDelete:Cascade)
+  supplierId     String    @db.ObjectId
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -85,7 +90,7 @@ model TransferStockAdjustment {
   notes            String?
   givingWarehouseId      String    
   receivingWarehouseId      String    
-   item       Item @relation(fields: [itemId], references: [id])
+   item       Item @relation(fields: [itemId], references: [id],onDelete:Cascade)
   itemId      String    @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -124,6 +129,26 @@ model Supplier {
   taxID           String?
   notes           String?
   Item        Item[]
+  AddStockAdjustment      AddStockAdjustment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name String?
+
+  email String? @unique
+
+  emailVerified  DateTime?
+
+  image String?
+
+  hashedPassword String?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt 
 }

@@ -4,6 +4,42 @@ import { NextResponse } from "next/server";
 export  async function POST(request){
     try {
         const itemData  = await request.json();
+
+        // Get the warehouse
+
+        const warehouse = await db.warehouse.findUnique({
+            where:{
+                id: itemData.warehouseId
+            }
+        });
+
+       
+        // Current Stock of the warehouse
+
+        const currentWarehouseStock = warehouse.stockQty;
+        const newStockQty = parseInt(currentWarehouseStock) + parseInt(
+            itemData.qty
+        ) ;
+
+
+
+        // Update the stock on the warehouse
+
+        const updatedWarehouse = await  db.warehouse.update({
+            where:{
+                id: itemData.warehouseId
+            },
+            data:{
+                stockQty: newStockQty
+
+            }
+        });
+
+
+
+
+
+
         const item = await db.item.create({
             data: {
             title: itemData.title,
@@ -57,7 +93,7 @@ export async function GET(request){
 
             include:{
                 category: true, // Returns all fields for all categories
-                supplier: true //Returns all suppliers
+                Warehouse: true
 
             }
         });

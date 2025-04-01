@@ -25,7 +25,7 @@ export default function SalesOverview() {
         {/* SALES ACTIVITY */}
         <SalesActivityCard />
         {/* INVENTORY SUMMARY */}
-        <div className="col-span-4 p-8">
+        <div className="col-span-full lg:col-span-4 p-8">
         <h2 className='mb-6 text-xl'>Inventory Summary</h2>
         <div className="">
             {

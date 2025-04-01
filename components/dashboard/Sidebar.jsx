@@ -108,7 +108,7 @@ export default function Sidebar({showSidebar, setShowSidebar}) {
               {/* Links */}
 
               <nav className='flex flex-col gap-3 px-3 py-6'>
-                <Link href="#" className='p-2 flex items-center space-x-2 bg-blue-600 text-slate-50   rounded-md '>
+                <Link href="/dashboard/home/overview" className='p-2 flex items-center space-x-2 bg-blue-600 text-slate-50   rounded-md '>
                 <Home className='w-4 h-4' />
                 <span>
                     Home

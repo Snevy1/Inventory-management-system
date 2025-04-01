@@ -7,7 +7,7 @@ import { Minus, Plus } from 'lucide-react'
 
 import React, { useState } from 'react'
 
-export default function AdjustmentForm({items,warehouses}) {
+export default function AdjustmentForm({items,warehouses, suppliers}) {
 
     const tabs = [
         {
@@ -67,7 +67,7 @@ w-full max-w-4xl px-4 py-2 bg-white border  shadow rounded mx-auto my-3
 
         {/* Form */}
         {activeForm === "add" ? 
-                    <AddInventoryForm items={items} warehouses={warehouses} />
+                    <AddInventoryForm items={items} warehouses={warehouses} suppliers={suppliers}/>
 
         : 
             <TransferInventoryForm items={items} warehouses={warehouses} />
