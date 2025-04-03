@@ -2,22 +2,23 @@
 import React from 'react'
 import SalesActivityCard from './SalesActivityCard'
 import InventoryCard from './InventoryCard'
+import { getData } from '@/lib/getData'
+import { title } from 'process';
 
-export default function SalesOverview() {
+export default async function SalesOverview() {
+
+    const warehouses = await getData('warehouses');
+
+    const inventorySummary  = warehouses.map((item, i)=>{
+        return {
+            title: item.title,
+            number: item.stockQty
+        }
+    });
 
     
 
-    const inventorySummary = [
-        {
-            title: "Quantity in Hand",
-            number: 10
-        },
-        {
-            title: "Quantity to be Received",
-            number: 0
-        }
-        
-    ]
+    
 
 
   return (

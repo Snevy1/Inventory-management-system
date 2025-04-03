@@ -7,6 +7,9 @@ export async function GET(request, {params:{id}}){
         const warehouse = await db.warehouse.findUnique({
             where:{
                 id
+            },
+            include:{
+                items:true
             }
         });
 

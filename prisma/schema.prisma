@@ -21,7 +21,7 @@ model Item {
   description  String?
   category     Category @relation(fields: [categoryId], references: [id],onDelete:Cascade)
   categoryId   String   @db.ObjectId
-  sku          String   @unique
+  sku          String   
   barcode      String?
   quantity     Int
   unit         Unit     @relation(fields: [unitId], references: [id])
@@ -40,8 +40,8 @@ model Item {
   dimensions   String?
   taxRate      Float
   notes        String?
-  AddStockAdjustment      AddStockAdjustment[]
-  TransferStockAdjustment TransferStockAdjustment[]
+  addStockAdjustments      AddStockAdjustment[]
+  transferStockAdjustments TransferStockAdjustment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -50,7 +50,7 @@ model Category {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String?
-  Item        Item[]
+  items        Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -62,7 +62,7 @@ model Warehouse {
   description             String?
   warehouseType           String
    stockQty                Int @default(0)
-  Item        Item[]
+  items        Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -90,7 +90,7 @@ model TransferStockAdjustment {
   notes            String?
   givingWarehouseId      String    
   receivingWarehouseId      String    
-   item       Item @relation(fields: [itemId], references: [id],onDelete:Cascade)
+  item       Item @relation(fields: [itemId], references: [id],onDelete:Cascade)
   itemId      String    @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -102,7 +102,7 @@ model Unit {
   id           String @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   abbreviation String
-  Item         Item[]
+  items         Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -110,7 +110,7 @@ model Unit {
 model Brand {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   title String
-  Item  Item[]
+  items  Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -128,7 +128,7 @@ model Supplier {
   paymentTerms    String?
   taxID           String?
   notes           String?
-  Item        Item[]
+  items        Item[]
   AddStockAdjustment      AddStockAdjustment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

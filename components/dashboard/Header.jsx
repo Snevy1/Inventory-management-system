@@ -1,9 +1,40 @@
+"use client"
+
 import { AlignJustify, Bell, ChevronDown, History, LayoutGrid, Plus, Settings, User2, Users } from 'lucide-react'
 import React from 'react'
 import SearchInput from './SearchInput'
 import Image from 'next/image'
+import { signOut, useSession } from 'next-auth/react';
+import { generateInitials } from '@/lib/generateInitials'
+import Login from '@/app/login/page'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 export default function Header({setShowSidebar}) {
+
+  const {data: session, status} = useSession();
+
+
+  if(status === 'loading'){
+    return <p>Loading User...</p>
+  }
+
+  if(status === 'unauthenticated'){
+    return <Login />
+
+  }
+  const username =  session?.user?.name.split(' ')[0]??"";
+
+  const initials = generateInitials(session?.user?.name);
+
+
 
   
   return (
@@ -47,15 +78,39 @@ export default function Header({setShowSidebar}) {
             {/* Organization */}
 
             <div className="flex gap-3">
-              <button className='flex items-center'>
-                <span>Nevily</span>
+      <DropdownMenu>
+  <DropdownMenuTrigger>
+  <button className='flex items-center'>
+                <span>{username}</span>
                 <ChevronDown className='w-4 h-4' />
-              </button>
+        </button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuItem>Team</DropdownMenuItem>
+    <DropdownMenuItem>Subscription</DropdownMenuItem>
+    <DropdownMenuItem>
+    <button onClick={()=>signOut()}>Logout</button>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+              
               <button>
-                <Image 
+                {
+                  session.user?.image ? (<Image 
                 
-                src="/img-profile.jpg"
-                alt='User Image' width={96} height={96} className='rounded-full w-8 h-8 border border-slate-800'/>
+                    src="/img-profile.jpg"
+                    alt='User Image' width={96} height={96} className='rounded-full w-8 h-8 border border-slate-800'/>):(
+                      <div
+                      className='rounded-full w-8 h-8 border border-slate-800 bg-white'
+
+                      >{initials}</div>
+                    )
+                }
+                
               </button>
               <button>
                 
