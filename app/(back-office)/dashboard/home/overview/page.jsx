@@ -14,7 +14,7 @@ export default async function Dashboard() {
         <SalesOverview />
         <CurrentStock title="Available Stock Items Stock" items={items} />
         {
-          warehouses.map((warehouse, i)=>{
+          warehouses?.map((warehouse, i)=>{
             return (
               <CurrentStock key={i} title={`Available Stock Items in ${warehouse.title}`} items={warehouse.items} />
 
