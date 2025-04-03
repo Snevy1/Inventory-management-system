@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+export const dynamic = 'force-dynamic'; 
+
 export default function NewSupplier({initialData={}, isUpdate=false}) {
   const router = useRouter();
   const selectOptions = [

@@ -6,6 +6,7 @@ import SubmitButton from '@/components/FormInputs/SubmitButton'
 import TextInput from '@/components/FormInputs/TextInput'
 import { makePostRequest, makePutRequest } from '@/lib/apiRequest'
 import { useRouter } from 'next/navigation'
+export const dynamic = 'force-dynamic';
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'

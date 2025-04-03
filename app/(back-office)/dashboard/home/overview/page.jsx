@@ -3,6 +3,8 @@ import SalesOverview from '@/components/dashboard/SalesOverview'
 import CurrentStock from '@/components/dashboard/CurrentStock'
 import { getData } from '@/lib/getData';
 
+export const dynamic = 'force-dynamic'; 
+
 export default async function Dashboard() {
   const items = await getData("items");
   const warehouses = await getData("warehouses");

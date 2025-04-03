@@ -1,6 +1,7 @@
 
 import AdjustmentForm from '@/components/dashboard/AdjustmentForm'
 import { getData } from '@/lib/getData'
+export const dynamic = 'force-dynamic'; 
 
 export default async function NewAdjustment() {
     const itemsData =  getData("items");

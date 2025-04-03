@@ -9,6 +9,7 @@ import { makePostRequest, makePutRequest } from '@/lib/apiRequest'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+export const dynamic = 'force-dynamic'; 
 
 export default function NewWareHouse({initialData={}, isUpdate=false}) {
   const router = useRouter();

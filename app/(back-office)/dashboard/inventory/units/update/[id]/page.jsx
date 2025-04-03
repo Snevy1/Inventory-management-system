@@ -1,6 +1,7 @@
 import React from 'react'
 import { getData } from '@/lib/getData';
 import NewUnit from '../../new/page';
+export const dynamic = 'force-dynamic'; 
 
 export default async function Update({params:{id}}) {
 

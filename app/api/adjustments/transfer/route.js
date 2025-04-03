@@ -1,6 +1,7 @@
 import db from "@/lib/db";
 import { error } from "console";
 import { NextResponse } from "next/server";
+export const dynamic = 'force-dynamic'; 
 
 export  async function POST(request){
     

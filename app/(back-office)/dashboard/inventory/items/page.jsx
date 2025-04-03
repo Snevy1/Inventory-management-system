@@ -3,6 +3,8 @@ import FixedHeader from '@/components/dashboard/FixedHeader'
 import { getData } from '@/lib/getData';
 import React from 'react'
 
+export const dynamic = 'force-dynamic'; 
+
 export default async function Items() {
   const items = await getData("items");
 

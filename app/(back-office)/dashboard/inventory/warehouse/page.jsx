@@ -1,7 +1,9 @@
 import DataTable from '@/components/dashboard/DataTable'
 import FixedHeader from '@/components/dashboard/FixedHeader'
 import { getData } from '@/lib/getData';
-import React from 'react'
+import React from 'react';
+
+export const dynamic = 'force-dynamic'; 
 
 export default async function Warehouses() {
   const warehouses = await getData("warehouses");
