@@ -36,7 +36,7 @@ const currentGivingWarehouseStock = givingWarehouse.stockQty;
   }
 }); */
 
-const currentGivingWareHouseItem = await prisma.item.findFirst({
+const currentGivingWareHouseItem = await db.item.findFirst({
   where: {
     id: itemId, // item ID
     WarehouseId: givingWarehouse.id // warehouse ID
@@ -128,7 +128,7 @@ console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.qua
 
   const newStockForRecievingWarehouse = parseInt(currentReceivingWarehouseStock) + parseInt(transferStockQty);
 
-  const currentReceivingWareHouseItem = await prisma.item.findFirst({
+  const currentReceivingWareHouseItem = await db.item.findFirst({
     where: {
       id: itemId, // item ID
       WarehouseId: receivingWarehouse.id // warehouse ID
