@@ -36,14 +36,18 @@ const currentGivingWarehouseStock = givingWarehouse.stockQty;
   }
 }); */
 
+console.log("ItemId",itemId )
+
 const currentGivingWareHouseItem = await db.item.findFirst({
   where: {
-    id: itemId, // item ID
+    sku: item.sku, // item ID
     WarehouseId: givingWarehouse.id // warehouse ID
   }
 });
 
-console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.quantity);
+console.log("currentGivingWareHouse", givingWarehouse);
+
+console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem);
 
 
 
@@ -86,7 +90,7 @@ console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.qua
     })
      */
 
-    const updatedItemInGivingWarehouse = await db.item.update({
+    /* const updatedItemInGivingWarehouse = await db.item.update({
       where:{
         id: itemId
       },
@@ -94,6 +98,16 @@ console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.qua
         WarehouseId: givingWarehouseId,
         quantity: newStockForGivingWarehouseItem
       }
+    });
+ */
+    const updatedItemInGivingWarehouse = await db.item.updateMany({
+      where: {
+        sku: item.sku,
+        WarehouseId: givingWarehouseId,
+      },
+      data: {
+        quantity: newStockForGivingWarehouseItem,
+      },
     });
 
 
@@ -130,13 +144,15 @@ console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.qua
 
   const currentReceivingWareHouseItem = await db.item.findFirst({
     where: {
-      id: itemId, // item ID
+      sku: item.sku, // item sku
       WarehouseId: receivingWarehouse.id // warehouse ID
     }
   });
 
 
   if(currentReceivingWareHouseItem){
+
+    
 
     const newStockForReceivigWarehouseItem = parseInt(currentReceivingWareHouseItem.quantity) + parseInt(transferStockQty);
     //Update stock
@@ -150,15 +166,23 @@ console.log("currentGivingWareHouseItemQuantity", currentGivingWareHouseItem.qua
     }
  });
 
- const updatedItemInReceivingWarehouse = await db.item.update({
-  where:{
-    id: itemId
+
+ 
+
+ console.log("Stopped here");
+ console.log("SK", item.sku )
+
+const updatedItemInReceivingWarehouse = await db.item.updateMany({
+  where: {
+    sku: item.sku,
+    WarehouseId: receivingWarehouseId,
   },
-  data:{
-    warehouseId: receivingWarehouseId,
-    quantity: newStockForReceivigWarehouseItem
-  }
+  data: {
+    quantity: newStockForReceivigWarehouseItem,
+  },
 });
+
+console.log("We are here for updatedItemInReceivingWarehouse", updatedItemInReceivingWarehouse )
 
   }else{
 
